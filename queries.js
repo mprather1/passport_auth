@@ -18,7 +18,7 @@ function getSingleUser(req, res){
 function createUser(req, res){
   var user = new User();
   user.username = req.body.username;
-  user.password = req.body.password
+  user.password = user.generateHash(req.body.password);
   user.save(function(err){
     res.status(200)
       .json({ success: user, message: "Created one user...", })
