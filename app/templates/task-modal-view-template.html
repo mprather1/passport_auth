@@ -1,0 +1,27 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h3 class="modal-title"><%= descrip %></h3>
+    </div>
+    <div class="modal-body">
+      <ul>
+        <li><strong>Item Number:</strong> <%= item_number %></li>
+        <li><strong>Location Number:</strong> <%= location_number %></li>
+        <li><strong>Project Type:</strong> <%= project %></li>
+        <li><strong>Description:</strong> <%= descrip %></li>
+        <li><strong>Priority:</strong> <%= priority %></li>
+        <li><strong>Requested By:</strong> <%= requestor %></li>
+        <li><strong>Assigned To:</strong> <%= assigned_to %></li>
+        <li><strong>Due Date:</strong> <%= due_date %></li>
+        <li><strong>Notes:</strong> <%= notes %></li>
+      </ul>
+    </div>
+    <div id='task-modal-footer' class="modal-footer">
+      <% if (completed===false) { %>
+        <button type="button" class="complete-button btn btn-default" data-dismiss="modal">Complete</button>
+      <% } %>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>

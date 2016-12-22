@@ -1,7 +1,11 @@
 var Marionette = require('marionette');
-var BaseCollectionView = require("./views").baseCollectionView;
-var RouterView = require("./views").routerView;
-var BaseCollection = require("./collections").baseCollection;
+var Users = require("./collections/Users");
+var ActiveTasks = require("./collections/ActiveTasks");
+var CompletedTasks = require("./collections/CompletedTasks");
+var TasksView = require("./views/TasksView");
+var TableView = require("./views/TableView");
+var FormModalView = require("./views/FormModalView");
+var LoginModalView = require("./views/LoginModalView");
 var style = require("./public/css/style.scss");
 
 var Controller = Marionette.Object.extend({
@@ -10,29 +14,72 @@ var Controller = Marionette.Object.extend({
     
     this.app = options.app;
     
-    var baseCollection = new BaseCollection();
-    var baseCollectionView = new BaseCollectionView({ collection: baseCollection });
+    var users = new Users();
+    var activeTasks = new ActiveTasks();
+    var completedTasks = new CompletedTasks();
+    var tableView = new TableView();
+    var formModalView = new FormModalView({ users: users });
+    var loginModalView = new LoginModalView({ collection: users });
 
-    baseCollection.fetch({
+    activeTasks.fetch({
       success: function(request, response){
-        console.log("Successfully fetched baseCollection...");
+        console.log("Successfully fetched active tasks...");
       },
       error: function(err){
         console.log("Error: " + err);
       }
     });
     
-    this.options.baseCollectionView = baseCollectionView;
-    this.app.view.showChildView('main', this.options.baseCollectionView);
+    completedTasks.fetch({
+      success: function(request, response){
+        console.log("Successfully fetched completed tasks...");
+      },
+      error: function(err){
+        console.log("Error: " + err);
+      }
+    });
+    
+    users.fetch({
+      success: function(request, response){
+        console.log("Successfully fetched users...");
+      },
+      error: function(err){
+        console.log("Error: " + err);
+      }
+    });
+    
+    this.options.users = users;
+    this.options.activeTasks = activeTasks;
+    this.options.completedTasks = completedTasks;
+    this.options.formModalView = formModalView;
+    this.options.tableView = tableView;
+    this.options.loginModalView = loginModalView;
+    this.app.view.showChildView('main', this.options.tableView);
+    this.options.formModalView.collection = this.options.activeTasks;
     
   },
   
-  oneRoute: function(){
-    this.app.view.showChildView('routerView', new RouterView({ message: "This is Route Number #1!" }));
+  active: function(){
+    this.options.tableView.showChildView('body', new TasksView({ 
+      collection: this.options.activeTasks,
+      completedTasks: this.options.completedTasks
+    }));
+    $('#active-radio').prop("checked", true);
   },
   
-  twoRoute: function(){
-    this.app.view.showChildView('routerView', new RouterView({ message: 'This is Route Number #2!' }));
+  completed: function(){
+    this.options.tableView.showChildView('body', new TasksView({ 
+      collection: this.options.completedTasks
+    }));
+    $('#completed-radio').prop('checked', true);
+  },
+  
+  newTask: function(){
+    this.options.formModalView.render();
+  },
+  
+  loginForm: function(){
+    this.options.loginModalView.render();
   }
   
 });

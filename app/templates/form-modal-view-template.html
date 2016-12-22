@@ -1,0 +1,75 @@
+<div class="modal-dialog">
+  
+  <div class="modal-content">
+    
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">New Task</h4>
+    </div>
+    
+    <div class="modal-body">
+      
+      <div class="form-group">
+        <label for="descrip" class="control-label">Description</label>
+        <input class="form-control" type="text" id="description_input" name="descrip" placeholder="Enter description...">
+        <span class="help-block hidden"></span>
+      </div>          
+      
+      <div class="form-group">
+        <label for="location_number" class="control-label">Location Number</label>
+        <input class="form-control" type="text" id="location_number_input" name="location_number" placeholder="Enter location number...">
+        <span class="help-block hidden"></span>
+      </div>
+      
+      <div class="form-group">
+        <label for="assigned_to" class="control-label" name="assigned_to">Assigned To</label>
+        <div id="assigned_to_input"></div>
+        <span class="help-block hidden"></span>
+      </div>      
+      
+      <div class='row'>
+        <div class="form-group col-sm-5">
+          <label for="project" class="control-label">Project Type</label><br>
+          
+          <label class="radio-inline"><input type="radio" value="task" name="project-radio" checked="checked"><strong>&nbsp;Task</strong></label>
+          
+          <label class="radio-inline"><input type="radio" value="project" name="project-radio"><strong>&nbsp;Project</strong></label>
+          <span class="help-block hidden"></span>
+        </div>
+        
+        <div class="form-group col-sm-7">
+          <label for="priority" class="control-label">Priority</label><br>
+          <label class="radio-inline"><input type="radio" value="low" name="priority-radio" checked="checked"><strong>&nbsp;Low</strong></label> 
+          <label class="radio-inline"><input type="radio" value="med" name="priority-radio"><strong>&nbsp;Med</strong></label> 
+          <label class="radio-inline"><input type="radio" value="high" name="priority-radio"><strong>&nbsp;High</strong></label>         
+          <span class="help-block hidden"></span>
+        </div>   
+        
+      </div>
+
+      <div class="form-group">
+        <label for="requestor" class="control-label">Requested By</label>
+        <input class="form-control" type="text" id="requestor_input" name="requestor" placeholder="Enter requestor...">
+        <span class="help-block hidden"></span>
+      </div>
+      
+      <div class="form-group">
+        <label for="due_date" class="control-label">Due Date</label>
+        <input class="form-control" type="text" id="due_date_input" name="due_date" placeholder="Enter due date...">
+        <span class="help-block hidden"></span>
+      </div>
+      
+      <div class="form-group">
+        <label for="notes" class="control-label">Notes</label>
+        <textarea class="form-control" type="text" id="notes_input" name="notes" placeholder="Enter notes..."></textarea>
+        <span class="help-block hidden"></span>
+      </div>
+      
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="submit-button btn btn-default">Submit</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+    
+</div>

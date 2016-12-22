@@ -1,4 +1,3 @@
 [
-  {"username":"username", "password":"password"},
-  {"username":"username2", "password":"password2"}
+  {"username":"username", "password":"$2a$10$h4MSX2LjFZGP2diNgFQPJ.762Y7dK5XlCfxXLwUJra4UUb0qPt3Ju", "first_name":"first_name", "last_name":"last_name", "email":"email@email.com"}
 ]

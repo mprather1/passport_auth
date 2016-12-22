@@ -8,8 +8,11 @@ var Router = Marionette.AppRouter.extend({
   },
   
   appRoutes: {
-    'one': 'oneRoute',
-    'two': 'twoRoute'
+    '/': 'active',
+    'tasks/active': 'active',
+    'tasks/completed': 'completed',
+    'tasks/new': 'newTask',
+    "login": 'loginForm'
   }
   
 });

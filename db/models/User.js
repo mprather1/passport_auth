@@ -5,7 +5,10 @@ var salt = bcrypt.genSaltSync(10);
 
 var UserSchema = new Schema({
   username: String,
-  password: String
+  password: String,
+  first_name: String,
+  last_name: String,
+  email: String
 });
 
 UserSchema.methods.generateHash = function(password) {

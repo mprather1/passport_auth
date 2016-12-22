@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Backbone Webpack Seed</title>
+    <title>Task Manager</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
+    <script>
+    var myVar;
+    function myFunction() {
+      myVar = setTimeout(showPage, 500);
+    }
+    function showPage() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("main").style.display = "block";
+    }
+  </script>
   </head>
-  <body>
+  <body onload="myFunction()" style="margin:0;">
+   <div id="loader"></div>
+   <div style="display:none" id="main" class="animate-bottom"></div>
   </body>
 </html>

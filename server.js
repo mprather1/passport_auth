@@ -43,7 +43,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(express.static(path.join(__dirname, 'app/static')));
 
 app.use('/api', routes);
 
@@ -59,10 +58,11 @@ app.get('/loginFailure', function(req, res, next) {
 });
 
 app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/#tasks/active',
   failureRedirect: '/loginFailure'
 }));
 
+app.use(express.static(path.join(__dirname, 'app/static')));
 
 var server = app.listen(port, function(){
   if (process.env.NODE_ENV === 'development'){

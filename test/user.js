@@ -12,7 +12,11 @@ describe('Users', function(){
   
   beforeEach(function(done){
     var newUser = new User({
-      username: "giant douche",
+      first_name: "giant",
+      last_name: 'douche',
+      email: 'email',
+      username: 'giantdouche',
+      password: 'theDonald1234'
     });
     newUser.save(function(err){
       done();
@@ -59,13 +63,12 @@ describe('Users', function(){
   it("POST should add a single user", function(done) {
     chai.request(server)
     .post('/api/users')
-    .send({"username": "giant douche", "password": "theDonald1234"})
+    .send({"username": "giantdouche", "password":"theDonald1234", "first_name":"Donald", "last_name":"Trump", "email":"Hillary@PrivateServer.com" })
     .end(function(err, res){
       res.should.have.status(200);
       res.should.be.json;
       res.body.should.be.a('object');
-      res.body.should.have.property("success");
-      res.body.success.should.be.a('object');
+      res.body.should.have.status("success");
       done();
     });
   });
@@ -76,13 +79,12 @@ describe('Users', function(){
     .end(function(err, res){
       chai.request(server)
       .put('/api/users/' + res.body[0]._id)
-      .send({"password": "turd sandwich"})
+      .send({"password": "turdsandwich"})
       .end(function(error, response){
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.a('object');
-        response.body.should.have.property('updated');
-        response.body.updated.should.be.a('object');
+        response.body.should.have.status('success');
         done();
       });
     });
@@ -98,8 +100,7 @@ describe('Users', function(){
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.a('object');
-        response.body.should.have.property('removed');
-        response.body.removed.should.be.a('object');
+        response.body.should.have.status('success');
         done();
       });
     });
